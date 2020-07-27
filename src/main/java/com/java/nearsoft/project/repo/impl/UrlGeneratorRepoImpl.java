@@ -8,7 +8,11 @@ import com.java.nearsoft.project.model.UrlModelList;
 import com.java.nearsoft.project.repository.UrlGeneratorRepository;
 import com.java.nearsoft.project.util.NearSoftUtils;
 
-
+/*
+ * Class: UrlGeneratorRepoImpl
+ * Implements: UrlGeneratorRepository
+ * Description: This class implements the necessary operations to fulfill the requirements specified from Bussiness Area.
+ */
 @Repository
 public class UrlGeneratorRepoImpl implements UrlGeneratorRepository {
 
@@ -19,7 +23,7 @@ public class UrlGeneratorRepoImpl implements UrlGeneratorRepository {
 	}
 
 	@Override
-	public UrlModel getUrl(String alias) {
+	public UrlModel getUrlByAlias(String alias) {
 		return NearSoftUtils.getUrlFromAlias(alias);
 	}
 	

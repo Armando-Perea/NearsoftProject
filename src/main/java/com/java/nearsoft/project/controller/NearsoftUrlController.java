@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -18,6 +17,10 @@ import com.java.nearsoft.project.repo.impl.UrlGeneratorRepoImpl;
 
 import lombok.extern.log4j.Log4j;
 
+/*
+ * Class: NearsoftUrlController
+ * Description: This class controller enables the RESTs Operations for the URL functoinality specified.
+ */
 @Log4j
 @RestController
 @RequestMapping("nearsoft/system/url-generator")
@@ -26,11 +29,11 @@ public class NearsoftUrlController {
 	@Autowired
 	UrlGeneratorRepoImpl urlGeneratorRepoImpl;
 	
-	@GetMapping("/getUrl/{url}")
+	@GetMapping("/getUrlByAlias/{url}")
 	@ResponseStatus(HttpStatus.OK)
-	public UrlModel getUrl(@PathVariable String url){
+	public UrlModel getUrlByAlias(@PathVariable String url){
 		log.info("getUrl Controller");
-	 return urlGeneratorRepoImpl.getUrl(url);
+	 return urlGeneratorRepoImpl.getUrlByAlias(url);
 	}
 	
 	@GetMapping("/getAllUrl")

@@ -16,38 +16,57 @@ import com.java.nearsoft.project.model.UrlModelList;
 
 import lombok.extern.log4j.Log4j;
 
-
+/*
+ * Class: NearSoftUtils
+ * Description: This class contains useful operations to create, get and delete information from the Nearsoft Service.
+ */
 @Log4j
 @Service
 public class NearSoftUtils {
-	
-	
-	public static String setEngine(UrlModel urlModel) {
-		String engine = urlModel.getUrl().contains(NearSoftConstants.GOOGLE_ENGINE) ? NearSoftConstants.GOOGLE_ENGINE : 
-						(urlModel.getUrl().contains(NearSoftConstants.YAHOO_ENGINE) ? NearSoftConstants.YAHOO_ENGINE : 
-						NearSoftConstants.OTHER_ENGINE);
-		return engine;
-	}
-	
+
+	/*
+	 * Method: removeVowels
+	 * Description: It removes Vowels from the provided string.
+	 * Arguments: alias
+	 * Returns: String
+	 */
 	public static String removeVowels(String alias) {
 		String newAlias;
 		newAlias =  alias.replaceAll("(?iu)[aeiouáéíóúü]", "").trim();
 		return newAlias;
 	}
 	
+	/*
+	 * Method: removeSpecialCharacters
+	 * Description: It removes Special Characters from the provided string.
+	 * Arguments: special
+	 * Returns: String
+	 */
 	public static String removeSpecialCharacters(String special) {
 		String result = special.replaceAll("[^\\p{L}\\p{Z}]","");
 		return result;
 	}
 	
+	/*
+	 * Method: removeNumbers
+	 * Description: It removes numbers from the provided string.
+	 * Arguments: special
+	 * Returns: String
+	 */
 	public static String removeNumbers(String special) {
 		String result = special.replaceAll("\\d","");
 		return result;
 	}
 	
+	/*
+	 * Method: generateRandomString
+	 * Description: It generates a random string using from 0 to z.
+	 * Arguments: No args
+	 * Returns: Random String
+	 */
 	public static String generateRandomString() {
-	    int leftLimit = 48; // numeral '0'
-	    int rightLimit = 122; // letter 'z'
+	    int leftLimit = 48; // numeral '0' from ascii
+	    int rightLimit = 122; // letter 'z' from ascii
 	    int targetStringLength = 20;
 	    Random random = new Random();
 	 
@@ -64,16 +83,34 @@ public class NearSoftUtils {
 	    return generatedString;
 	}
 	
+	/*
+	 * Method: get5AlphaString
+	 * Description: It gets only 5 char from the provided String specified for google process
+	 * Arguments: alpha
+	 * Returns: 5 char String
+	 */
 	public static String get5AlphaString(String alpha) {
 		String fiveChar = alpha.substring(0, Math.min(alpha.length(), 5));
 		return fiveChar;
 	}
 	
+	/*
+	 * Method: get7AlphaNumericString
+	 * Description: It gets only 7 char from the provided String specified for yahoo process
+	 * Arguments: alpha
+	 * Returns: 7 char String
+	 */
 	public static String get7AlphaNumericString(String alpha) {
 		String sevenChar = alpha.substring(0, Math.min(alpha.length(), 7));
 		return sevenChar;
 	}
 	
+	/*
+	 * Method: getAlias
+	 * Description: It gets the alias based on the provided engine
+	 * Arguments: UrlModel
+	 * Returns: Alias Object
+	 */
 	public static Alias getAlias(UrlModel urlModel) {
 		Alias alias = new Alias();
 		log.info("urlModel: "+urlModel.toString());
@@ -88,7 +125,7 @@ public class NearSoftUtils {
 			else {
 				alias.setAlias(NearSoftUtils.getOtherAlias(urlModel.getUrl()));
 			}
-			NearSoftApp.aliasMap.put(NearSoftUtils.removeSpecialCharacters(urlModel.getUrl()), alias.getAlias());
+			NearSoftApp.aliasMap.put(urlModel.getUrl(), alias.getAlias());
 		}
 		else {
 			alias.setAlias(NearSoftApp.aliasMap.get(urlModel.getUrl()));
@@ -97,6 +134,12 @@ public class NearSoftUtils {
 		return alias;
 	}
 	
+	/*
+	 * Method: getUrlFromAlias
+	 * Description: It gets the url based on the provided alias
+	 * Arguments: alias
+	 * Returns: UrlModel
+	 */
 	public static UrlModel getUrlFromAlias(String alias) {
 		UrlModel urlModel = new UrlModel();
 		boolean alreadyExists = NearSoftApp.aliasMap.containsValue(alias);
@@ -112,24 +155,40 @@ public class NearSoftUtils {
 		            urlModel.setUrl(entry.getKey());
 		        }
 		    }
-			System.out.println("urlModel: "+urlModel.toString());
 		}
-		
 		return urlModel;
 	}
 	
+	/*
+	 * Method: getAllUrl
+	 * Description: It gets the url map kept in memory
+	 * Arguments: No Args
+	 * Returns: UrlModelList
+	 */
 	public static UrlModelList getAllUrl() {
 		UrlModelList urlModelList = new UrlModelList();
 		urlModelList.setUrlContent(NearSoftApp.aliasMap);
 		return urlModelList;
 	}
 	
+	/*
+	 * Method: clearUrlList
+	 * Description: It clears the url map kept in memory
+	 * Arguments: No Args
+	 * Returns: String
+	 */
 	public static String clearUrlList() {
 		UrlModelList urlModelList = new UrlModelList();
 		NearSoftApp.aliasMap = urlModelList.getUrlContent();
 		return NearSoftConstants.URL_LIST_CLEARED;
 	}
 	
+	/*
+	 * Method: deleteUrlByEngine
+	 * Description: It deletes the url based on the engine provided
+	 * Arguments: engine
+	 * Returns: String
+	 */
 	public static String deleteUrlByEngine(String engine) {
 		boolean existsKey = NearSoftApp.aliasMap.containsKey(engine);
 		String response=NearSoftConstants.URL_NOT_ON_LIST;
@@ -146,6 +205,12 @@ public class NearSoftUtils {
 		return response;
 	}
 	
+	/*
+	 * Method: deleteUrlByAlias
+	 * Description: It deletes the url based on the alias provided
+	 * Arguments: engine
+	 * Returns: String
+	 */
 	public static String deleteUrlByAlias(String alias) {
 		boolean existsValue = NearSoftApp.aliasMap.containsValue(alias);
 		String response=NearSoftConstants.ALIAS_NOT_ON_LIST;
@@ -162,6 +227,13 @@ public class NearSoftUtils {
 		return response;
 	}
 	
+	
+	/*
+	 * Method: getGoogleAlias
+	 * Description: It gets the google alias
+	 * Arguments: No Args
+	 * Returns: String
+	 */
 	public static String getGoogleAlias() {
 		String aliasGoogle;
 		aliasGoogle = NearSoftUtils.generateRandomString();
@@ -170,6 +242,12 @@ public class NearSoftUtils {
 		return aliasGoogle;
 	}
 	
+	/*
+	 * Method: getYahooAlias
+	 * Description: It gets the yahoo alias
+	 * Arguments: No Args
+	 * Returns: String
+	 */
 	public static String getYahooAlias() {
 		String aliasYahoo;
 		aliasYahoo = NearSoftUtils.generateRandomString();
@@ -177,6 +255,12 @@ public class NearSoftUtils {
 		return aliasYahoo;
 	}
 	
+	/*
+	 * Method: getOtherAlias
+	 * Description: It gets the alias different from google or yahoo
+	 * Arguments: No Args
+	 * Returns: String
+	 */
 	public static String getOtherAlias(String url) {
 		String aliasOther=url;
 		aliasOther  = NearSoftUtils.removeVowels(aliasOther);
@@ -185,23 +269,5 @@ public class NearSoftUtils {
 		return aliasOther;
 	}
 
-//	public static void main(String[] args) {
-//		String randomGoogle;
-//		randomGoogle = NearSoftUtils.generateRandomString();
-//		randomGoogle = NearSoftUtils.removeNumbers(randomGoogle);
-//		randomGoogle = NearSoftUtils.get5AlphaString(randomGoogle);
-//		System.out.println("FOR GOOGLE: "+randomGoogle);
-//		System.out.println();
-//		String randomYahoo;
-//		randomYahoo = NearSoftUtils.generateRandomString();
-//		randomYahoo = NearSoftUtils.get7AlphaNumericString(randomYahoo);
-//		System.out.println("FOR YAHOO : "+randomYahoo);
-//		System.out.println();
-//		String randomOther="www.0c13an$sde%e23ps&.c0m";
-//		randomOther  = NearSoftUtils.removeVowels(randomOther);
-//		randomOther  = NearSoftUtils.removeSpecialCharacters(randomOther);
-//		randomOther  = NearSoftUtils.removeSpecialCharacters(randomOther);
-//		System.out.println("FOR OTHER : "+randomOther);
-//	}
 
 }

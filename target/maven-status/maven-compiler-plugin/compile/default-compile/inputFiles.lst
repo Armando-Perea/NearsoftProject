@@ -1,9 +1,9 @@
 /home/armando/Documents/NearsoftProject/NearsoftProject/src/main/java/com/java/nearsoft/project/model/Alias.java
+/home/armando/Documents/NearsoftProject/NearsoftProject/src/main/java/com/java/nearsoft/project/util/NearSoftConstants.java
 /home/armando/Documents/NearsoftProject/NearsoftProject/src/main/java/com/java/nearsoft/project/repository/UrlGeneratorRepository.java
 /home/armando/Documents/NearsoftProject/NearsoftProject/src/main/java/com/java/nearsoft/project/model/UrlModelList.java
 /home/armando/Documents/NearsoftProject/NearsoftProject/src/main/java/com/java/nearsoft/project/controller/NearsoftUrlController.java
 /home/armando/Documents/NearsoftProject/NearsoftProject/src/main/java/com/java/nearsoft/project/NearSoftApp.java
-/home/armando/Documents/NearsoftProject/NearsoftProject/src/main/java/com/java/nearsoft/project/util/EncryptSecurity.java
 /home/armando/Documents/NearsoftProject/NearsoftProject/src/main/java/com/java/nearsoft/project/repo/impl/UrlGeneratorRepoImpl.java
 /home/armando/Documents/NearsoftProject/NearsoftProject/src/main/java/com/java/nearsoft/project/model/UrlModel.java
 /home/armando/Documents/NearsoftProject/NearsoftProject/src/main/java/com/java/nearsoft/project/util/NearSoftUtils.java

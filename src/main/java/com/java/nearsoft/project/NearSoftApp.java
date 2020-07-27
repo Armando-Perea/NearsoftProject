@@ -14,7 +14,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Hello Vitar System!
+ * NearSoftApp
  *
  */
 @SpringBootApplication
@@ -29,12 +29,5 @@ public class NearSoftApp {
     {
         SpringApplication.run(NearSoftApp.class, args);
     }
-	
-//	@ManagedOperation
-//	//@Scheduled(cron= "0 0/5 * * * *")
-//	@Scheduled(cron = "0 * * * * *")
-//	public void testConnection() {
-//		
-//	}
 
 }

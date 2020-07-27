@@ -13,7 +13,7 @@ public interface UrlGeneratorRepository {
 	
 	public Alias createUrl(UrlModel urlModel);
 	
-	public UrlModel getUrl(String url);
+	public UrlModel getUrlByAlias(String url);
 	
 	public UrlModelList getAllUrl();
 	
