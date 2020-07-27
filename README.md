@@ -12,17 +12,19 @@ By Engr. Armando Perea Sanchez.
   - I always try to apply the SOLID principles the closest I can, I might not be an expert but I try always to deliver a       clean and understandable code so my colleagues get an easy way to modify it!
   - I added some extra operations that I thougth could be necessary while testing the app.
   - It is not necessary to restart the project to clear the url List content, you can use the "clearUrls" method specified     below.
-  - The application Handle duplicate entries just like a Singleton at getAlias method.
-  - I decided to set specific names to each the REST API operations since it is a better way to consume them.
+  - The application handles duplicate entries just like a Singleton at getAlias method.
+  - I decided to set specific names to each of the REST API operations since it is a better way to consume them.
+   - The requeirements did  not specify to handle lower/uppercase, so this version does not handle that scenario.
+   - I did not have enough time to handle every possible bad request or exception, but I'm aware of it.
 
 # Application Run Guide
 
- - If you downloaded from git , please get the master branch which must have the lastest and ultimate version.
+ - If you downloaded it from git , please get the master branch which must have the lastest and ultimate version.
  - Compile the project as a maven project (mvn clean install)
  - Run the project as springboot Application, there are no VM Arguments
- - Default portservice is 8080
+ - Default service port is 8080
  - It is important to configure lombok at your local eclipse/intelliJ environment
- - The requeirements did  not specify to handle lower/uppercase, so this version does not handle that scenario.
+
  
 # Endpoints to process
 
